@@ -37,7 +37,7 @@ If you are a developer you may type the following command at your terminal:
 Then follow <a href="https://www.odoo.com/documentation/10.0/tutorials.html">the developer tutorials</a>
 
 
-For Odoo employees
+For Odoo employees.
 ------------------
 
 To add the odoo-dev remote use this command:
