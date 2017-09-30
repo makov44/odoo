@@ -202,6 +202,8 @@ class MailTemplate(models.Model):
     null_value = fields.Char('Default Value', help="Optional value to use if the target field is empty")
     copyvalue = fields.Char('Placeholder Expression', help="Final placeholder expression, to be copy-pasted in the desired template field.")
     scheduled_date = fields.Char('Scheduled Date', help="If set, the queue manager will send the email after the date. If not set, the email will be send as soon as possible. Jinja2 placeholders may be used.")
+    template = fields.Binary(string="Upload Template")
+    template_fname = fields.Char(string="Template Filename")
 
     @api.onchange('model_id')
     def onchange_model_id(self):
@@ -210,6 +212,11 @@ class MailTemplate(models.Model):
             self.model = self.model_id.model
         else:
             self.model = False
+
+    @api.onchange('template')
+    def onchange_template(self):
+        if self.template:
+            self.body_html = base64.b64decode(self.template)
 
     def build_expression(self, field_name, sub_field_name, null_value):
         """Returns a placeholder expression for use in a template field,
