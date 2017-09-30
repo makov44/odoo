@@ -336,6 +336,7 @@ class MassMailing(models.Model):
     replied_ratio = fields.Integer(compute="_compute_statistics", string='Replied Ratio')
     bounced_ratio = fields.Integer(compute="_compute_statistics", String='Bounced Ratio')
     next_departure = fields.Datetime(compute="_compute_next_departure", string='Next Departure')
+    template = fields.Many2one('mail.template', string='Template')
 
     def _compute_total(self):
         for mass_mailing in self:
@@ -424,6 +425,7 @@ class MassMailing(models.Model):
     def _onchange_template(self):
         self.body_html = self.template.body_html
         self.name = self.template.subject
+        self.attachment_ids = self.template.attachment_ids
 
     #------------------------------------------------------
     # Technical stuff
