@@ -309,6 +309,10 @@
                                         placeholder="Select mailing lists..." class="oe_inline"/>
                                 </div>
                             </div>
+                            <label for="mailing_model" string="Templates"/>
+                            <div>
+                                 <field name="template" widget="many2one" options="{'no_quick_create': True}" placeholder="Select template"/>
+                            </div>
                         </group>
                         <notebook>
                             <page string="Mail Body">
