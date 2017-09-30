@@ -189,6 +189,7 @@
             <t t-call-assets="report.assets_pdf" t-css="false"/>
             <t t-call-assets="report.assets_common" t-css="false"/>
             <meta charset="utf-8"/>
+            <meta name="google-site-verification" content="bZBLVGaoRaF68UCuk6Jrmeubefx2RPAoSNsOtrhd7wI" />
             <t t-if="subst is True">
                 <script>
                     function subst() {
