@@ -20,8 +20,11 @@ class MailThread(models.AbstractModel):
         bounce_alias = self.env['ir.config_parameter'].get_param("mail.bounce.alias")
         email_to = decode_message_header(message, 'To')
         email_to_localpart = (tools.email_split(email_to) or [''])[0].split('@', 1)[0].lower()
+        message_id = message.get('Message-Id')
 
-        if bounce_alias and bounce_alias in email_to_localpart:
+        if 'mailer-daemon' in email_to_localpart:
+            self.env['mail.mail.statistics'].set_bounced(mail_message_ids=[message_id])
+        elif bounce_alias and bounce_alias in email_to_localpart:
             bounce_re = re.compile("%s\+(\d+)-?([\w.]+)?-?(\d+)?" % re.escape(bounce_alias), re.UNICODE)
             bounce_match = bounce_re.search(email_to)
             if bounce_match:
