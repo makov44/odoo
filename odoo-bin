@@ -3,10 +3,10 @@
 # set server timezone in UTC before time module imported
 __import__('os').environ['TZ'] = 'UTC'
 import odoo
-import sys
-sys.path.append("pycharm-debug-py3k.egg")
-import pydevd
-pydevd.settrace('mark.smartlead.info', port=2222, stdoutToServer=True, stderrToServer=True)
+# import sys
+# sys.path.append("pycharm-debug-py3k.egg")
+# import pydevd
+# pydevd.settrace('mark.smartlead.info', port=2222, stdoutToServer=True, stderrToServer=True)
 
 if __name__ == "__main__":
     odoo.cli.main()
